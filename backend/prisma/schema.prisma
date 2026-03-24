@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      String   @default("user") @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  loans        Loan[]
+  reservations Reservation[]
+  auditLogs    AuditLog[]
+
+  @@map("users")
+}
+
+model Book {
+  id              Int      @id @default(autoincrement())
+  title           String   @db.VarChar(255)
+  author          String   @db.VarChar(255)
+  publicationYear Int      @map("publication_year")
+  status          String   @default("disponible") @db.VarChar(20)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  loans        Loan[]
+  reservations Reservation[]
+
+  @@map("books")
+}
+
+model Loan {
+  id         Int       @id @default(autoincrement())
+  bookId     Int       @map("book_id")
+  userId     Int       @map("user_id")
+  loanDate   DateTime  @default(now()) @map("loan_date")
+  dueDate    DateTime  @map("due_date")
+  returnDate DateTime? @map("return_date")
+  status     String    @default("activo") @db.VarChar(20)
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  book Book @relation(fields: [bookId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("loans")
+}
+
+model Reservation {
+  id              Int      @id @default(autoincrement())
+  bookId          Int      @map("book_id")
+  userId          Int      @map("user_id")
+  reservationDate DateTime @default(now()) @map("reservation_date")
+  expirationDate  DateTime @map("expiration_date")
+  status          String   @default("activa") @db.VarChar(20)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  book Book @relation(fields: [bookId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("reservations")
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?     @map("user_id")
+  action    String   @db.VarChar(50)
+  entity    String   @db.VarChar(50)
+  entityId  Int?     @map("entity_id")
+  details   String?  @db.Text
+  ipAddress String?  @map("ip_address") @db.VarChar(45)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
