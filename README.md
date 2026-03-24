@@ -61,7 +61,7 @@ JWT_SECRET="SuperSecretoParaElSistemaDeLibros2026"
 
 ### 3. Crear la base de datos y tablas
 
-Asegúrate de que SQL Server esté corriendo y que la base de datos `BookSystemDB` exista. Luego ejecuta:
+Asegúrarse de que SQL Server esté corriendo y que la base de datos `BookSystemDB` exista. Luego ejecutar:
 ```bash
 npx prisma generate
 npx prisma db push
@@ -76,7 +76,7 @@ El servidor estará disponible en `http://localhost:3000`
 
 ### 5. Configurar el Frontend
 
-Abre una **nueva terminal**:
+Abrir una **nueva terminal**:
 ```bash
 cd frontend
 npm install
@@ -89,12 +89,12 @@ El frontend estará disponible en `http://localhost:5173`
 
 ## 📖 Documentación de la API (Swagger)
 
-Con el backend corriendo, accede a:
+Con el backend corriendo, acceder a:
 ```
 http://localhost:3000/api/docs
 ```
 
-Allí encontrarás la documentación interactiva de todos los endpoints con la posibilidad de probarlos directamente.
+Allí se encontrará la documentación interactiva de todos los endpoints con la posibilidad de probarlos directamente.
 
 ---
 
@@ -201,14 +201,14 @@ book-management-system/
 │   ├── src/
 │   │   ├── config/
 │   │   │   └── swagger.ts         # Configuración Swagger
-│   │   ├── controllers/           # Reciben HTTP, llaman servicios
+│   │   ├── controllers/           # Controladores
 │   │   │   ├── auth.controller.ts
 │   │   │   ├── book.controller.ts
 │   │   │   ├── loan.controller.ts
 │   │   │   └── reservation.controller.ts
 │   │   ├── middlewares/
 │   │   │   └── auth.middleware.ts  # Verificación JWT
-│   │   ├── routes/                # Definen endpoints
+│   │   ├── routes/                
 │   │   │   ├── auth.routes.ts
 │   │   │   ├── book.routes.ts
 │   │   │   ├── loan.routes.ts
@@ -220,7 +220,7 @@ book-management-system/
 │   │   │   └── reservation.service.ts
 │   │   ├── utils/
 │   │   │   ├── logger.ts          # Winston logger
-│   │   │   └── prisma.ts          # Cliente Prisma (Singleton)
+│   │   │   └── prisma.ts          # Cliente Prisma 
 │   │   └── app.ts                 # Punto de entrada
 │   ├── logs/                      # Archivos de log generados
 │   ├── .env                       # Variables de entorno
@@ -241,7 +241,6 @@ book-management-system/
 │   │   ├── main.tsx               # Punto de entrada
 │   │   └── index.css              # Estilos globales
 │   └── package.json
-├── docs/                          # Diagramas de arquitectura
 └── README.md
 ```
 
@@ -272,9 +271,3 @@ Los logs se almacenan en:
 - `logs/app.log` → Todos los eventos
 - `logs/error.log` → Solo errores
 - **Consola** → Con colores para desarrollo
-
----
-
-## 👤 Autor
-
-Desarrollado como parte del Reto JUJU - Ensamblador de Bots.
