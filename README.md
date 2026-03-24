@@ -270,4 +270,4 @@ El sistema registra eventos críticos usando **Winston**:
 Los logs se almacenan en:
 - `logs/app.log` → Todos los eventos
 - `logs/error.log` → Solo errores
-- **Consola** → Con colores para desarrollo
+- **Consola**
