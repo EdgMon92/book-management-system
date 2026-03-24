@@ -54,9 +54,9 @@ npm install
 
 Crear el archivo `.env` en la carpeta `backend`:
 ```env
-DATABASE_URL="sqlserver://localhost:1433;database=BookSystemDB;user=sa;password=TuPassword;encrypt=true;trustServerCertificate=true"
+DATABASE_URL=sqlserver://localhost:1433;database=BookSystemDB;user=sa;password=Admin123;encrypt=true;trustServerCertificate=true
 PORT=3000
-JWT_SECRET="TuClaveSecretaSuperSegura2025"
+JWT_SECRET="SuperSecretoParaElSistemaDeLibros2026"
 ```
 
 ### 3. Crear la base de datos y tablas
